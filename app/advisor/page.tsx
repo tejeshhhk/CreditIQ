@@ -223,221 +223,222 @@ Context: This is an Indian user asking about CIBIL score (300-900 range), Indian
             </div>
           </div>
         </div>
-      </nav>
+      </nav>      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col gap-8">
+          {/* Top Score Bar - Compact & Glassmorphic */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
+            <Card className="border-0 shadow-lg bg-white/60 backdrop-blur-xl border border-white/40">
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-violet-100 flex items-center justify-center text-violet-600">
+                  <Brain className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-slate-500 text-xs font-medium uppercase tracking-wider">Current Score</p>
+                  <p className="text-2xl font-bold text-slate-900">{financialData.cibilScore}</p>
+                </div>
+              </CardContent>
+            </Card>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Left Sidebar - Score & Tips */}
-          <div className="space-y-6">
-            {/* Score Overview */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-            >
-              <Card className="border-0 shadow-xl shadow-violet-200/50 bg-gradient-to-br from-violet-500 to-purple-600 text-white overflow-hidden">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                      <Brain className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="text-violet-200 text-sm">AI Analysis</p>
-                      <p className="font-bold text-lg">Your CIBIL Health</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-end justify-between mb-4">
-                    <div>
-                      <p className="text-violet-200 text-sm mb-1">Current Score</p>
-                      <p className="text-4xl font-bold">{financialData.cibilScore}</p>
-                      <p className="text-violet-200">{rating.label}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-violet-200 text-sm mb-1">Potential</p>
-                      <p className="text-2xl font-bold text-emerald-300">{potentialScore}</p>
-                      <p className="text-emerald-300 text-sm">+{potentialScore - financialData.cibilScore} pts</p>
-                    </div>
-                  </div>
+            <Card className="border-0 shadow-lg bg-white/60 backdrop-blur-xl border border-white/40">
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-slate-500 text-xs font-medium uppercase tracking-wider">Potential Gain</p>
+                  <p className="text-2xl font-bold text-emerald-600">+{potentialScore - financialData.cibilScore} pts</p>
+                </div>
+              </CardContent>
+            </Card>
 
-                  <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-white rounded-full transition-all duration-1000"
-                      style={{ width: `${((financialData.cibilScore - 300) / 600) * 100}%` }}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <Card className="border-0 shadow-lg bg-white/60 backdrop-blur-xl border border-white/40">
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-sky-100 flex items-center justify-center text-sky-600">
+                  <Shield className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-slate-500 text-xs font-medium uppercase tracking-wider">Risk Level</p>
+                  <p className="text-2xl font-bold text-slate-900">{rating.label}</p>
+                </div>
+              </CardContent>
+            </Card>
 
-            {/* Top Priority Tips */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-slate-900">Priority Actions</h3>
-                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">{tips.length} tips</span>
+            <Card className="border-0 shadow-lg bg-white/60 backdrop-blur-xl border border-white/40">
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600">
+                  <Lightbulb className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-slate-500 text-xs font-medium uppercase tracking-wider">Smart Tips</p>
+                  <p className="text-2xl font-bold text-slate-900">{tips.length} Available</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-4 gap-8 h-[750px]">
+            {/* Sidebar Actions - Compact */}
+            <div className="hidden lg:block space-y-6 overflow-y-auto pr-2">
+              <div className="flex items-center gap-2 mb-4">
+                <Sparkles className="text-violet-600 w-5 h-5" />
+                <h3 className="font-bold text-slate-900">Priority Steps</h3>
               </div>
-              <div className="space-y-3">
-                {tips.slice(0, 4).map((tip, i) => (
-                  <Card 
-                    key={tip.id} 
-                    className="border-0 shadow-md bg-white hover:shadow-lg transition-shadow cursor-pointer group"
-                    onClick={() => setInput(`Tell me more about: ${tip.title}`)}
+              <div className="space-y-4">
+                {tips.map((tip, i) => (
+                  <motion.div
+                    key={tip.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * i }}
                   >
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-3">
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                          tip.impact === 'high' ? 'bg-red-100 text-red-600' :
-                          tip.impact === 'medium' ? 'bg-amber-100 text-amber-600' :
-                          'bg-sky-100 text-sky-600'
-                        }`}>
-                          {tip.impact === 'high' ? <AlertTriangle className="w-4 h-4" /> :
-                           tip.impact === 'medium' ? <Lightbulb className="w-4 h-4" /> :
-                           <Shield className="w-4 h-4" />}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-medium text-slate-900 text-sm truncate group-hover:text-violet-600 transition-colors">{tip.title}</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs text-emerald-600 font-semibold">+{tip.potentialGain} pts</span>
-                            <ChevronRight className="w-3 h-3 text-slate-400 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        </div>
+                    <button
+                      onClick={() => setInput(`Tell me more about: ${tip.title}`)}
+                      className="w-full text-left p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-violet-200 transition-all group"
+                    >
+                      <p className="text-sm font-semibold text-slate-900 mb-1 group-hover:text-violet-600 transition-colors">
+                        {tip.title}
+                      </p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] font-bold uppercase text-emerald-600">+{tip.potentialGain} pts</span>
+                        <ChevronRight className="w-3 h-3 text-slate-300 group-hover:translate-x-1 transition-transform" />
                       </div>
-                    </CardContent>
-                  </Card>
+                    </button>
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
-          </div>
+            </div>
 
-          {/* Main Chat Area */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-2"
-          >
-            <Card className="border-0 shadow-xl shadow-slate-200/50 bg-white h-[calc(100vh-12rem)] flex flex-col">
-              {/* Chat Header */}
-              <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg">
-                    <Sparkles className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="font-bold text-slate-900">AI Credit Advisor</h2>
-                    <p className="text-xs text-emerald-600 flex items-center gap-1">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                      Online - Powered by AI
-                    </p>
-                  </div>
-                </div>
-                <Button variant="ghost" size="sm" className="text-slate-500" onClick={() => window.location.reload()}>
-                  <RefreshCw className="w-4 h-4 mr-1" /> Reset
-                </Button>
-              </div>
-
-              {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                <AnimatePresence>
-                  {messages.map((msg) => (
-                    <motion.div
-                      key={msg.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div className={`max-w-[85%] ${msg.role === 'user' ? 'order-2' : 'order-1'}`}>
-                        <div className={`rounded-2xl px-4 py-3 ${
-                          msg.role === 'user' 
-                            ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white rounded-br-md' 
-                            : 'bg-slate-100 text-slate-800 rounded-bl-md'
-                        }`}>
-                          <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                            {msg.content.split('**').map((part, i) => 
-                              i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-                            )}
-                          </p>
-                        </div>
-                        <p className={`text-xs text-slate-400 mt-1 ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
-                          {msg.timestamp.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-                
-                {isLoading && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex justify-start"
-                  >
-                    <div className="bg-slate-100 rounded-2xl rounded-bl-md px-4 py-3">
+            {/* Expansive Chat Area */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="lg:col-span-3 h-full"
+            >
+              <Card className="border-0 shadow-2xl shadow-violet-200/50 bg-white/80 backdrop-blur-2xl border border-white/50 h-full flex flex-col overflow-hidden rounded-[2.5rem]">
+                {/* Chat Header */}
+                <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-white/40">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center shadow-xl shadow-violet-500/30">
+                      <MessageSquare className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-black text-slate-900 tracking-tight">AI Financial Coach</h2>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-violet-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                        <div className="w-2 h-2 bg-violet-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                        <div className="w-2 h-2 bg-violet-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                        <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse shadow-sm shadow-emerald-500/50" />
+                        <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Active Assistant</span>
                       </div>
                     </div>
-                  </motion.div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* Quick Prompts */}
-              <div className="px-4 py-3 border-t border-slate-100">
-                <p className="text-xs text-slate-500 mb-2">Quick questions:</p>
-                <div className="flex flex-wrap gap-2">
-                  {quickPrompts.map((prompt, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setInput(prompt.text)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105 ${
-                        prompt.color === 'sky' ? 'bg-sky-50 text-sky-700 hover:bg-sky-100' :
-                        prompt.color === 'violet' ? 'bg-violet-50 text-violet-700 hover:bg-violet-100' :
-                        prompt.color === 'emerald' ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100' :
-                        'bg-amber-50 text-amber-700 hover:bg-amber-100'
-                      }`}
-                    >
-                      <prompt.icon className="w-3 h-3" />
-                      {prompt.text.length > 30 ? prompt.text.slice(0, 30) + '...' : prompt.text}
-                    </button>
-                  ))}
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl"
+                    onClick={() => window.location.reload()}
+                  >
+                    <RefreshCw className="w-4 h-4 mr-2" /> Reset Chat
+                  </Button>
                 </div>
-              </div>
 
-              {/* Input */}
-              <div className="p-4 border-t border-slate-100">
-                <form 
-                  onSubmit={(e) => { e.preventDefault(); handleSend(); }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="flex-1 relative">
+                {/* Messages - More Spacious */}
+                <div className="flex-1 overflow-y-auto px-6 py-8 space-y-8 custom-scrollbar">
+                  <AnimatePresence mode="popLayout">
+                    {messages.map((msg) => (
+                      <motion.div
+                        key={msg.id}
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div className={`max-w-[80%] ${msg.role === 'user' ? 'order-2' : 'order-1'}`}>
+                          <div className={`shadow-sm transition-all ${
+                            msg.role === 'user' 
+                              ? 'bg-gradient-to-br from-violet-600 to-indigo-600 text-white rounded-3xl rounded-tr-none px-6 py-4' 
+                              : 'bg-slate-50 border border-slate-100 text-slate-800 rounded-3xl rounded-tl-none px-6 py-4'
+                          }`}>
+                            <p className="text-base leading-relaxed whitespace-pre-wrap">
+                              {msg.content.split('**').map((part, i) => 
+                                i % 2 === 1 ? <strong key={i} className={msg.role === 'user' ? 'text-white' : 'text-violet-700 font-extrabold'}>{part}</strong> : part
+                              )}
+                            </p>
+                          </div>
+                          <p className={`text-[10px] font-bold text-slate-400 mt-2 uppercase tracking-widest px-2 ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
+                            {msg.timestamp.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                  
+                  {isLoading && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="flex justify-start"
+                    >
+                      <div className="bg-slate-50 rounded-3xl rounded-tl-none px-6 py-4 border border-slate-100">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                          <span className="w-1.5 h-1.5 bg-violet-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                          <span className="w-1.5 h-1.5 bg-violet-600 rounded-full animate-bounce" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* Input Area - Redesigned */}
+                <div className="p-6 bg-white/40 border-t border-slate-100">
+                  {/* Quick Prompts - Floating Chips */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {quickPrompts.map((prompt, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setInput(prompt.text)}
+                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-[11px] font-bold uppercase tracking-wider transition-all hover:-translate-y-0.5 active:scale-95 shadow-sm hover:shadow-md border border-transparent ${
+                          prompt.color === 'sky' ? 'bg-sky-50 text-sky-700 hover:border-sky-200' :
+                          prompt.color === 'violet' ? 'bg-violet-50 text-violet-700 hover:border-violet-200' :
+                          prompt.color === 'emerald' ? 'bg-emerald-50 text-emerald-700 hover:border-emerald-200' :
+                          'bg-amber-50 text-amber-700 hover:border-amber-200'
+                        }`}
+                      >
+                        <prompt.icon className="w-3.5 h-3.5" />
+                        {prompt.text}
+                      </button>
+                    ))}
+                  </div>
+
+                  <form 
+                    onSubmit={(e) => { e.preventDefault(); handleSend(); }}
+                    className="flex items-center gap-4 bg-slate-100/50 p-2 rounded-[2rem] border border-slate-200/50 focus-within:bg-white focus-within:border-violet-400 focus-within:ring-4 focus-within:ring-violet-500/10 transition-all shadow-inner"
+                  >
                     <input
                       type="text"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      placeholder="Ask about credit improvement, loans, EMIs..."
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-slate-900 placeholder:text-slate-400"
+                      placeholder="Ask me about credit improvement, home loans, or EMIs..."
+                      className="flex-1 px-6 py-4 bg-transparent outline-none text-slate-900 font-medium placeholder:text-slate-400"
                       disabled={isLoading}
                     />
-                  </div>
-                  <Button 
-                    type="submit"
-                    disabled={!input.trim() || isLoading}
-                    className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white h-12 px-6 rounded-xl shadow-lg shadow-violet-500/25"
-                  >
-                    <Send className="w-5 h-5" />
-                  </Button>
-                </form>
-              </div>
-            </Card>
-          </motion.div>
+                    <Button 
+                      type="submit"
+                      disabled={!input.trim() || isLoading}
+                      className="bg-violet-600 hover:bg-violet-700 text-white w-14 h-14 rounded-full shadow-xl shadow-violet-500/30 transition-all flex-shrink-0 active:scale-90 disabled:opacity-50 disabled:scale-100"
+                    >
+                      <Send className="w-6 h-6" />
+                    </Button>
+                  </form>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </main>
+>
     </div>
   )
 }
